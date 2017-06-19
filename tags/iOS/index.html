@@ -14,14 +14,11 @@
 <meta name="author" content="陈帅" />
 
 
-    
-    
-
 
 <meta name="description" content="我们生活在一个程序的世界里,出生-说话-工作-结婚-生子-离开,每个人都是如此">
 <meta property="og:type" content="website">
 <meta property="og:title" content="程序改变生活">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta property="og:url" content="http://yoursite.com/tags/iOS/index.html">
 <meta property="og:site_name" content="程序改变生活">
 <meta property="og:description" content="我们生活在一个程序的世界里,出生-说话-工作-结婚-生子-离开,每个人都是如此">
 <meta name="twitter:card" content="summary">
@@ -54,13 +51,11 @@
 <link rel="stylesheet" href="/css/style.css">
 
 
-    <style> .article { opacity: 0;} </style>
-
 
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>程序改变生活</title>
+<title>Tag: iOS | 程序改变生活</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -69,10 +64,10 @@
     var yiliaConfig = {
         fancybox: true,
         animate: true,
-        isHome: true,
+        isHome: false,
         isPost: false,
         isArchive: false,
-        isTag: false,
+        isTag: true,
         isCategory: false,
         fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
         scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
@@ -266,143 +261,54 @@
 </nav>
       <div class="body-wrap">
   
-    <article id="post-UserDefauls" class="article article-type-post" itemscope itemprop="blogPost">
   
-    <div class="article-meta">
-      <a href="/2017/06/19/UserDefauls/" class="article-date">
-      <time datetime="2017-06-19T04:54:13.000Z" itemprop="datePublished">2017-06-19</time>
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2017" class="archive-year">2017</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+          <div class="article-meta">
+              <a href="/2017/06/19/UserDefauls/" class="archive-article-date">
+      <time datetime="2017-06-19T04:54:13.000Z" itemprop="datePublished">06-19</time>
 </a>
 
 
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
+        </div>
+         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/06/19/UserDefauls/">iOS 本地数据存储OC和Swift分析</a>
+      <a class="archive-article-title" href="/2017/06/19/UserDefauls/">iOS 本地数据存储OC和Swift分析</a>
     </h1>
   
 
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
+        <div class="article-info info-on-archive">
           
-        <p>&nbsp;&nbsp;&nbsp;&nbsp;今天在写Swift的时候,碰到了本地存储的问题,OC的NSUserDefauls和Swift的UserDefaust还是有差别的,我的邮箱是<a href="KenenCS@163.com">KenenCS@163.com</a>,欢迎多多交流!</p>
-<h3>一.本地数据存储的用法</h3>
 
-<p><strong>首先我们先来回忆一下OC中NSUserDefauls的用法:</strong></p>
-<div style="border: 2px dashed #ff99cc;">存值:[[NSUserDefaults standardUserDefaults] setValue:&lt;#(nullable id)#&gt; forKey:&lt;#(nonnull NSString <em>)#&gt;];<br>    取值:[[NSUserDefaults standardUserDefaults] setObject:&lt;#(nullable id)#&gt; forKey:&lt;#(nonnull NSString </em>)#&gt;;<br></div><br><strong>在看一下Swift中的用法:</strong><br><div style="border: 2px dashed #ff99cc;">存值:<br>        UserDefaults.standard.set(&lt;#T##url: URL?##URL?#&gt;, forKey: &lt;#T##String#&gt;)<br>        UserDefaults.standard.set(&lt;#T##value: Any?##Any?#&gt;, forKey: &lt;#T##String#&gt;)<br>        UserDefaults.standard.set(&lt;#T##value: Bool##Bool#&gt;, forKey: &lt;#T##String#&gt;)<br>        UserDefaults.standard.set(&lt;#T##value: Double##Double#&gt;, forKey: &lt;#T##String#&gt;)<br>        UserDefaults.standard.set(&lt;#T##value: Float##Float#&gt;, forKey: &lt;#T##String#&gt;)<br>        UserDefaults.standard.set(&lt;#T##value: Int##Int#&gt;, forKey: &lt;#T##String#&gt;)<br>        取值:<br>        UserDefaults.standard.object(forKey: &lt;#T##String#&gt;)<br>        UserDefaults.standard.bool(forKey: &lt;#T##String#&gt;)<br>        UserDefaults.standard.double(forKey: &lt;#T##String#&gt;)<br>        UserDefaults.standard.float(forKey: &lt;#T##String#&gt;)<br>        UserDefaults.standard.integer(forKey: &lt;#T##String#&gt;)<br></div>
-
-<p><strong>通过两者对比,我们发现:</strong></p>
-<div style="color: red;">1.Swift存储的value值要明确数据类型了,所以使用者可千万要注意,不然会报错!<br>2.Swift最新版中没有SetObject: forKey: 的方法!但是有.object(forkey:)这个方法,所以使用时请确保这个值是一定不为空!</div>
-
-<p></p><h3>二.value和object的区别</h3>我们都知道 value 代表的是值, object代表的是一个对象,现在总结了一下两者的区别,如下:<p></p>
-<ol>
-<li>Object：forkey：中object值是不能够为nil的，不然会报错.</li>
-<li>Value：forKey：中value能够为nil，但是当value为nil的时候，会自动调用removeObject：forKey方法.</li>
-</ol>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
+          
     <div class="article-tag tagcloud">
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
     </div>
 
-      
-      <div class="clearfix"></div>
-    </div>
-    
+        </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
-  
 </article>
-
-
-
-
-
-
-
-
-
   
-    <article id="post-ceshi" class="article article-type-post" itemscope itemprop="blogPost">
   
-    <div class="article-meta">
-      <a href="/2017/06/16/ceshi/" class="article-date">
-      <time datetime="2017-06-16T09:49:54.000Z" itemprop="datePublished">2017-06-16</time>
-</a>
-
-
-    </div>
+    </div></section>
   
-  <div class="article-inner">
+
     
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/06/16/ceshi/">开通了博客</a>
-    </h1>
-  
 
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <p>&nbsp;&nbsp;&nbsp;&nbsp;费了一点时间通过GitHub Pages开通了自己的博客,这个博客我准备向大家分享自己作为程序员一路走来的点点滴滴,有空我就会更新,专业技术性的文章会较多一点,个人感觉一个好的程序员要懂得分享,只有在分享讲解中才能让自己成长的快些,给别人讲的同时说明自己懂了,这是利人利己的事儿!我的邮箱是<a href="KenenCS@163.com">KenenCS@163.com</a>,欢迎多多交流!<br><br></p>
-<p></p><h2>MAC系统下GitHub Pages博客搭建步骤:</h2><p></p>
-<p></p><h3>一.常见的博客搭建方案分析</h3>WorkPress：一般需要独立域名（收费），对 MarkDown 不友好<br>GitHubPages + Jekell：免费，稍微有点麻烦<br><span style="color:red;">GitHubPages + Hexo</span>：免费，使用简单，使用者众多…<br><span><a href="https://hexo.io" style="font-size: 20px;" target="_blank" rel="external">Hexo</a> 是一个基于 Nodejs 的静态博客网站生成器,速度很不错,支持 Markdown,兼容于 Windows, Mac &amp; Linux.</span><br><br><p></p>
-<p></p><h3>二.博客环境准备</h3>1.创建GitHub仓库<br>①登录<a href="https://github.com" target="_blank" rel="external">GitHub</a>账号(没有账号不会注册的<a href="http://jingyan.baidu.com/article/455a9950abe0ada167277864.html" target="_blank" rel="external">就看这儿</a>);<br>②登录成功后创建一个新的仓库,注意Respository name命名格式一定是”你的用户名.github.io”,如<a href="KenenCS.github.io">KenenCS.github.io</a>(不会创建仓库的<a href="http://jingyan.baidu.com/article/b907e627d3c1d546e7891ceb.html" target="_blank" rel="external">看这儿</a>);<br>2.本地环境准备<br>①下载安装 Git.<br>&nbsp;&nbsp;&nbsp;&nbsp;Mac中的Xcode已经自带的有Git不用执行这一步,但没装Xcode的则要进行这一步,首先打开 <a href="https://git-scm.com/download/" target="_blank" rel="external">Git官网</a>,选择 Downloads 下面的 Mac OS X,下载完成后直接双击 dmg 文件安装即可.<br>②下载安装 Nodejs.<br>&nbsp;&nbsp;&nbsp;&nbsp;打开 <a href="https://nodejs.org/en/download/" target="_blank" rel="external">Nodejs</a> 下载页面，选择 Macintosh Installer 即可开始下载,下载完成后直接双击 pkg 文件安装即可.<br>③下载安装 Hexo.<br>&nbsp;&nbsp;&nbsp;&nbsp;可以先看下 <a href="https://hexo.io" target="_blank" rel="external">Hexo官网</a>.<br>&nbsp;&nbsp;&nbsp;&nbsp;打开终端,输入命令$ <span style="color: red;">npm install hexo-cli -g</span><br><br><p></p>
-<p></p><h3>三.创建博客</h3>1.创建本地博客<br>&nbsp;&nbsp;&nbsp;&nbsp;①打开终端,输入命令$&nbsp; <span style="color: red;">cd 你的博客文件夹</span><br>&nbsp;&nbsp;&nbsp;&nbsp;②输入命令$&nbsp; <span style="color: red;">hexo init 你的用户名.github.io</span> &nbsp;(这里就是前面提到的命名注意)<br>2.配置博客信息<br>&nbsp;&nbsp;&nbsp;&nbsp;首先，复制一份打开本地博客目录下的 _config.yml 文件，命名为 _config_bak.yml，做为备份，以防改错…然后使用文本编辑器打开本地博客目录下的 _config.yml 文件.<br>&nbsp;&nbsp;&nbsp;&nbsp;这里先看看最基础的配置，也就是必须要改动的(注意,键值之间一定要加空格)：<p></p>
-<div style="border: 2px dashed #ff99cc;">title: xxx  # 博客的名字，也称站点名称<br>author: xxx # 作者名字<br>description: xxx # 对站点的描述，搜索引擎会抓取，可以自定义（这个还是加上比较好）<br>language: zh-Hans # 语言 简体中文<br>theme: next  # 配置主题<br>deploy: # 部署相关配置<br>    type: git # 使用 Git 提交<br>    repo: <a href="https://github.com/xxx/xxx.github.io.git" target="_blank" rel="external">https://github.com/xxx/xxx.github.io.git</a> # 就是存放博客的仓库地址<br></div>&nbsp;&nbsp;&nbsp;&nbsp;具体请看 <a href="">Hexo文档</a>.<br>3.查看自己的博客<br>&nbsp;&nbsp;&nbsp;&nbsp;①打开终端,输入命令行$&nbsp; <span style="color: red;">cd xxx.github.io</span><br>&nbsp;&nbsp;&nbsp;&nbsp;②输入命令$&nbsp; <span style="color: red;">hexo s</span><br>&nbsp;&nbsp;&nbsp;&nbsp;③运行成功后,有一个网址 <a href="http://localhost:4000/" target="_blank" rel="external">http://localhost:4000/</a>  打开它,会看到一篇Hello World.然后回到终端, control+c 关闭.<br>&nbsp;&nbsp;&nbsp;&nbsp;④安装自动部署发布工具,输入命令$&nbsp; <span style="color: red;">npm install hexo-deployer-git –save</span><br>&nbsp;&nbsp;&nbsp;&nbsp;⑤刚你看到的 <a href="http://localhost:4000/" target="_blank" rel="external">http://localhost:4000/</a> 页面其实是调试的状态下,并没有发布,现在发布,输入命令行$&nbsp; <span style="color: red;">hexo clean &amp;&amp; hexo g &amp;&amp; hexo d</span> ,发布完成,在浏览器上输入 xxx.github.io 查看你的博客吧!<br>4.写博客与发布<br>&nbsp;&nbsp;&nbsp;&nbsp;①打开你本地博客的文件夹,在xxx.github.io/source/_posts 文件夹下面你会看到Hello World,打开这个文件之后你就会发现这个就是你的第一篇博客源码.<br>&nbsp;&nbsp;&nbsp;&nbsp;②打开终端,输入命令行$&nbsp; <span style="color: red;">cd 你的博客文件夹</span><br>&nbsp;&nbsp;&nbsp;&nbsp;③打开终端,输入命令行$&nbsp; <span style="color: red;">cd xxx.github.io</span><br>&nbsp;&nbsp;&nbsp;&nbsp;④创建新文章,输入命令行$&nbsp; <span style="color: red;">hexo new”postName”</span> ,你会发现在你的Hello World源码下有多了一个新文件,这个就是你刚建的新文件,然后你在按照第2步(配置博客信息)和第3步(查看自己的博客)走一遍,就新建了一篇文章.<br><br><h3>四.更换博客主题</h3>如果感觉你的博客主题不好看,那么咱可以换!目前网上有很多 <a href="https://hexo.io/themes/" target="_blank" rel="external">Hexo 主题</a>.<br><br>1.打开终端,输入命令$&nbsp; <span style="color: red;">cd 你的博客文件夹</span><br>2.输入命令$&nbsp; <span style="color: red;">git clone <a href="https://github.com/iissnan/hexo-theme-next" target="_blank" rel="external">https://github.com/iissnan/hexo-theme-next</a> themes/next</span> (<a href="https://github.com/iissnan/hexo-theme-next这个链接就是你找的主题的GitHub链接" target="_blank" rel="external">https://github.com/iissnan/hexo-theme-next这个链接就是你找的主题的GitHub链接</a>).<br>3.使用文本编辑器打开本地博客目录下的 _config.yml 文件，搜索，定位 theme 键值，将 theme 的值修改为 next.(注意哦,_config.yml 还是先复制一份留作备份)<br>4.输入命令$&nbsp; <span style="color: red;">hexo s</span> 进行查看页面主题合不合自己口味.<br>5.输入命令行$&nbsp; <span style="color: red;">hexo clean &amp;&amp; hexo g &amp;&amp; hexo d</span> ,进行发布!<br><br><br><br><div style="font-size: 20px;">以上就是创建博客的流程,如果发现有报错的话可以联系我,或者可以进入 Hexo 官网查看错误总结!</div>
-
-<p><br></p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-  
 </div>
       <footer id="footer">
     <div class="outer">
@@ -456,10 +362,6 @@
         })
     </script>
 
-
-    
-
-     
 
 
 
