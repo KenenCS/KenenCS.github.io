@@ -266,6 +266,76 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-AuthenticationCode" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/06/19/AuthenticationCode/" class="article-date">
+      <time datetime="2017-06-19T07:49:50.000Z" itemprop="datePublished">2017-06-19</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/06/19/AuthenticationCode/">iOS使用OC语言动态生成本地图片验证码</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;前段时间项目中要做一个本地图片验证码,其实说是图片验证码,并不是图片,看完下面你就明白了,哈哈,我的邮箱是<a href="KenenCS@163.com">KenenCS@163.com</a>,欢迎多多交流!</p>
+<p></p><h3>一.封装画线方法</h3><br><strong style="font-size: 20px;">KenCodeView.h</strong><p></p>
+<div style="border: 2px dashed #ff99cc;">#import <uikit uikit.h=""><br><br>@interface KenCodeView : UIView<br><br>@property (nonatomic, retain) NSArray <em>changeArray;<span style="color: green;">//验证码需要的字符组成数组</span><br>@property (nonatomic, retain) NSMutableString </em>changeString;<span style="color: green;">//展示的验证码字符串</span><br>@property (nonatomic, retain) UILabel *codeLabel;<span style="color: green;">//展示验证码字符串的label</span><br><br><span style="color: green;">//改变验证码的方法,在Controller中会调用</span><br>-(void)changeCode;<br><br>@end<br></uikit></div>
+
+<p><strong style="font-size: 20px;">KenCodeView.m</strong></p>
+<div style="border: 2px dashed #ff99cc;">#import “KenCodeView.h”<br><br>@implementation KenCodeView<br><br>@synthesize changeArray = _changeArray;<span style="color: green;">//验证码需要的字符组成数组</span><br>@synthesize changeString = _changeString;<span style="color: green;">//展示的验证码字符串</span><br>@synthesize codeLabel = _codeLabel;<span style="color: green;">//展示验证码字符串的label</span><br><span style="color: green;">//初始化时调用</span><br>- (id)initWithFrame:(CGRect)frame<br>{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self = [super initWithFrame:frame];<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (self) {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;float red = arc4random() % 100 / 100.0;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;float green = arc4random() % 100 / 100.0;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;float blue = arc4random() % 100 / 100.0;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UIColor <em>color = [UIColor colorWithRed:red green:green blue:blue alpha:0.2];<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: green;">//随机背景颜色</span><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.backgroundColor = color;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[self change];<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return self;<br>}<br><br><span style="color: green;">//Controller中调用此方法更换验证码</span><br>-(void)changeCode{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[self change];<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[self setNeedsDisplay];<br>}<br><br><span style="color: green;">//改变验证码的方法</span><br>- (void)change<br>{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: green;">//验证码字符素材</span><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.changeArray = [[NSArray alloc] initWithObjects:@”0”,@”1”,@”2”,@”3”,@”4”,@”5”,@”6”,@”7”,@”8”,@”9”,@”A”,@”B”,@”C”,@”D”,@”E”,@”F”,@”G”,@”H”,@”I”,@”J”,@”K”,@”L”,@”M”,@”N”,@”O”,@”P”,@”Q”,@”R”,@”S”,@”T”,@”U”,@”V”,@”W”,@”X”,@”Y”,@”Z”,@”a”,@”b”,@”c”,@”d”,@”e”,@”f”,@”g”,@”h”,@”i”,@”j”,@”k”,@”l”,@”m”,@”n”,@”o”,@”p”,@”q”,@”r”,@”s”,@”t”,@”u”,@”v”,@”w”,@”x”,@”y”,@”z”,nil];<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NSMutableString </em>getStr = [[NSMutableString alloc] initWithCapacity:5];<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.changeString = [[NSMutableString alloc] initWithCapacity:6];<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: green;">//随机从数组中选取需要个数的字符串，拼接为验证码字符串,最终的字符串用self.changeString接收</span><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for(NSInteger i = 0; i &lt; 4; i++)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NSInteger index = arc4random() % ([self.changeArray count] - 1);<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;getStr = [self.changeArray objectAtIndex:index];<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.changeString = (NSMutableString <em>)[self.changeString stringByAppendingString:getStr];<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br><br>}<br><br><span style="color: green;">//画线</span><br>- (void)drawRect:(CGRect)rect {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[super drawRect:rect];<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;float red = arc4random() % 100 / 100.0;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;float green = arc4random() % 100 / 100.0;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;float blue = arc4random() % 100 / 100.0;<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UIColor </em>color = [UIColor colorWithRed:red green:green blue:blue alpha:0.5];<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: green;">//随机背景颜色,因为重新更换验证码也要走这个方法,所以设置背景颜色</span><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[self setBackgroundColor:color];<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: green;">//根据要显示的验证码字符串，根据长度，计算每个字符串显示的位置</span><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NSString <em>text = [NSString stringWithFormat:@”%@”,self.changeString];<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CGSize cSize = [@”S” sizeWithFont:[UIFont systemFontOfSize:20]];<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int width = rect.size.width / text.length - cSize.width;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int height = rect.size.height - cSize.height;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CGPoint point;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: green;">//依次绘制每一个字符,可以设置显示的每个字符的字体大小、颜色、样式等</span><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;float pX, pY;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for (int i = 0; i &lt; text.length; i++)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pX = arc4random() % width + rect.size.width / text.length </em> i;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pY = arc4random() % height;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;point = CGPointMake(pX, pY);<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;unichar c = [text characterAtIndex:i];<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NSString *textC = [NSString stringWithFormat:@”%C”, c];<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[textC drawAtPoint:point withFont:[UIFont systemFontOfSize:20]];<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: green;">//调用drawRect：之前，系统会向栈中压入一个CGContextRef，调用UIGraphicsGetCurrentContext()会取栈顶的CGContextRef</span><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CGContextRef context = UIGraphicsGetCurrentContext();<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: green;">//设置线条宽度</span><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CGContextSetLineWidth(context, 1.0);<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: green;">//绘制干扰线</span><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for(int cout = 0; cout &lt; 10; cout++)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;red = arc4random() % 100 / 100.0;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;green = arc4random() % 100 / 100.0;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;blue = arc4random() % 100 / 100.0;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;color = [UIColor colorWithRed:red green:green blue:blue alpha:0.2];<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: green;">//设置线条填充色</span><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CGContextSetStrokeColorWithColor(context, [color CGColor]);<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: green;">//设置线的起点</span><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pX = arc4random() % (int)rect.size.width;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pY = arc4random() % (int)rect.size.height;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CGContextMoveToPoint(context, pX, pY);<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: green;">//设置线终点</span><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pX = arc4random() % (int)rect.size.width;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pY = arc4random() % (int)rect.size.height;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CGContextAddLineToPoint(context, pX, pY);<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: green;">//画线</span><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CGContextStrokePath(context);<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>}<br><br>@end<br><br></div>
+
+<p></p><h3>二.控制器中调用</h3><p></p>
+<div style="border: 2px dashed #ff99cc;"><br>#import “ViewController.h”<br>#import “KenCodeView.h”<br><br>@interface ViewController (){<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;KenCodeView <em>_KenCodeView;<br>}<br><br>@end<br><br>@implementation ViewController<br><br>- (void)viewDidLoad {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[super viewDidLoad];<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: green;">//初始化刚刚封装的图片验证码view</span><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_KenCodeView = [[KenCodeView alloc] initWithFrame:CGRectMake(50, 100, 82, 32)];<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: green;">//创建轻击手势</span><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UITapGestureRecognizer </em>tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapClick:)];<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[_KenCodeView addGestureRecognizer:tap];<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[self.view addSubview:_KenCodeView];<br>}<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: green;">//点击验证码的方法</span><br>- (void)tapClick:(UITapGestureRecognizer*)tap{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: green;">//更换验证码的方法</span><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[_KenCodeView changeCode];<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: green;">//输出目前验证码的字符</span><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NSLog(@”%@”,_KenCodeView.changeString);<br>}<br><br><br>- (void)didReceiveMemoryWarning {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[super didReceiveMemoryWarning];<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Dispose of any resources that can be recreated.<br>}<br><br>@end<br></div>
+
+<p></p><h3>三.项目地址</h3><br><strong>此小demo的地址在<a href="https://github.com/KenenCS/AuthenticationCode" target="_blank" rel="external">GitHub的 AuthenticationCode</a></strong>,欢迎下载交流!<p></p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
+    </div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-UserDefauls" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -299,7 +369,7 @@
 <h3>一.本地数据存储的用法</h3>
 
 <p><strong>首先我们先来回忆一下OC中NSUserDefauls的用法:</strong></p>
-<div style="border: 2px dashed #ff99cc;">存值:[[NSUserDefaults standardUserDefaults] setValue:&lt;#(nullable id)#&gt; forKey:&lt;#(nonnull NSString <em>)#&gt;];<br>    取值:[[NSUserDefaults standardUserDefaults] setObject:&lt;#(nullable id)#&gt; forKey:&lt;#(nonnull NSString </em>)#&gt;;<br></div><br><strong>在看一下Swift中的用法:</strong><br><div style="border: 2px dashed #ff99cc;">存值:<br>        UserDefaults.standard.set(&lt;#T##url: URL?##URL?#&gt;, forKey: &lt;#T##String#&gt;)<br>        UserDefaults.standard.set(&lt;#T##value: Any?##Any?#&gt;, forKey: &lt;#T##String#&gt;)<br>        UserDefaults.standard.set(&lt;#T##value: Bool##Bool#&gt;, forKey: &lt;#T##String#&gt;)<br>        UserDefaults.standard.set(&lt;#T##value: Double##Double#&gt;, forKey: &lt;#T##String#&gt;)<br>        UserDefaults.standard.set(&lt;#T##value: Float##Float#&gt;, forKey: &lt;#T##String#&gt;)<br>        UserDefaults.standard.set(&lt;#T##value: Int##Int#&gt;, forKey: &lt;#T##String#&gt;)<br>        取值:<br>        UserDefaults.standard.object(forKey: &lt;#T##String#&gt;)<br>        UserDefaults.standard.bool(forKey: &lt;#T##String#&gt;)<br>        UserDefaults.standard.double(forKey: &lt;#T##String#&gt;)<br>        UserDefaults.standard.float(forKey: &lt;#T##String#&gt;)<br>        UserDefaults.standard.integer(forKey: &lt;#T##String#&gt;)<br></div>
+<div style="border: 2px dashed #ff99cc;"><span style="color: green;">//存值</span>[[NSUserDefaults standardUserDefaults] setValue:&lt;#(nullable id)#&gt; forKey:&lt;#(nonnull NSString <em>)#&gt;];<br>    <span style="color: green;">//取值</span>[[NSUserDefaults standardUserDefaults] setObject:&lt;#(nullable id)#&gt; forKey:&lt;#(nonnull NSString </em>)#&gt;;<br></div><br><strong>在看一下Swift中的用法:</strong><br><div style="border: 2px dashed #ff99cc;"><span style="color: green;">//存值</span><br>        UserDefaults.standard.set(&lt;#T##url: URL?##URL?#&gt;, forKey: &lt;#T##String#&gt;)<br>        UserDefaults.standard.set(&lt;#T##value: Any?##Any?#&gt;, forKey: &lt;#T##String#&gt;)<br>        UserDefaults.standard.set(&lt;#T##value: Bool##Bool#&gt;, forKey: &lt;#T##String#&gt;)<br>        UserDefaults.standard.set(&lt;#T##value: Double##Double#&gt;, forKey: &lt;#T##String#&gt;)<br>        UserDefaults.standard.set(&lt;#T##value: Float##Float#&gt;, forKey: &lt;#T##String#&gt;)<br>        UserDefaults.standard.set(&lt;#T##value: Int##Int#&gt;, forKey: &lt;#T##String#&gt;)<br>        <span style="color: green;">//取值</span><br>        UserDefaults.standard.object(forKey: &lt;#T##String#&gt;)<br>        UserDefaults.standard.bool(forKey: &lt;#T##String#&gt;)<br>        UserDefaults.standard.double(forKey: &lt;#T##String#&gt;)<br>        UserDefaults.standard.float(forKey: &lt;#T##String#&gt;)<br>        UserDefaults.standard.integer(forKey: &lt;#T##String#&gt;)<br></div>
 
 <p><strong>通过两者对比,我们发现:</strong></p>
 <div style="color: red;">1.Swift存储的value值要明确数据类型了,所以使用者可千万要注意,不然会报错!<br>2.Swift最新版中没有SetObject: forKey: 的方法!但是有.object(forkey:)这个方法,所以使用时请确保这个值是一定不为空!</div>
