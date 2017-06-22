@@ -30,7 +30,7 @@
 <meta property="og:image" content="http://yoursite.com/2017/06/20/URLSession-one/6.png">
 <meta property="og:image" content="http://yoursite.com/2017/06/20/URLSession-one/7.png">
 <meta property="og:image" content="http://yoursite.com/2017/06/20/URLSession-one/8.png">
-<meta property="og:updated_time" content="2017-06-21T02:37:51.000Z">
+<meta property="og:updated_time" content="2017-06-21T02:45:45.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS 使用OC语言开发之NSURLSession(一)">
 <meta name="twitter:description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;是不是用惯了AFNetWorking你就忘记了底层的网络请求了呢?自从iOS7的之后NSURLConnection已经被苹果踢了,用NSURLSession进行代替,来进行网络请求,本篇文章主要讲述使用NSURLSession进行GET和POST请求以及进行文件上传,下载和断点下载以及后台下载决定放到下一篇文章单独讲,我的邮箱是KenenCS@163">
@@ -316,7 +316,7 @@
 
 <div style="border: 2px dashed #ff99cc;"><span style="font-size: 18px;color: #D2691E;">&nbsp;&nbsp;&nbsp;&nbsp;#pragma mark–请求URL的方法,因为后面是分为数据请求和文件上传的,所以写到一个大方法里面.</span><img src="/2017/06/20/URLSession-one/2.png" alt="ViewController.m"><br></div>
 
-<div style="border: 2px dashed #ff99cc;"><span style="font-size: 18px;color: #D2691E;">&nbsp;&nbsp;&nbsp;&nbsp;#pragma mark–请求URL的方法,GET请求的代码和POST请求的代码都有,注意GET请求用的是NSURLSession,POST请求用的是NSMutableURLSession.我这这方法里面写了两个小方法,一个是GET和POST请求,一个是文件上传,分开写是为了便于大家后面的观看.</span><img src="/2017/06/20/URLSession-one/3.png" alt="ViewController.m"><img src="/2017/06/20/URLSession-one/4.png" alt="ViewController.m"><br></div>
+<div style="border: 2px dashed #ff99cc;"><span style="font-size: 18px;color: #D2691E;">&nbsp;&nbsp;&nbsp;&nbsp;#pragma mark–请求URL的方法,GET请求的代码和POST请求的代码都有,注意GET请求用的是NSURLSession,POST请求用的是NSMutableURLSession.我这方法里面写了两个小方法,一个是GET和POST请求,一个是文件上传,分开写是为了便于大家后面的观看.</span><img src="/2017/06/20/URLSession-one/3.png" alt="ViewController.m"><img src="/2017/06/20/URLSession-one/4.png" alt="ViewController.m"><br></div>
 
 <div style="border: 2px dashed #ff99cc;"><span style="font-size: 18px;color: #D2691E;">&nbsp;&nbsp;&nbsp;&nbsp;#pragma mark–这个是GET和POST的数据请求,注意使用的是NSURLSessionDataTask,它就是数据请求的任务创建.另外不要忘了执行任务的代码,要不然是不会执行的哦!</span><img src="/2017/06/20/URLSession-one/5.png" alt="ViewController.m"><br></div>
 
@@ -338,7 +338,7 @@
         <p><span>本文标题:</span><a href="/2017/06/20/URLSession-one/">iOS 使用OC语言开发之NSURLSession(一)</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">陈帅</a></p>
         <p><span>发布时间:</span>2017-06-20, 15:05:53</p>
-        <p><span>最后更新:</span>2017-06-21, 10:37:51</p>
+        <p><span>最后更新:</span>2017-06-21, 10:45:45</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2017/06/20/URLSession-one/" title="iOS 使用OC语言开发之NSURLSession(一)">http://yoursite.com/2017/06/20/URLSession-one/</a>
             <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2017/06/20/URLSession-one/　　作者: 陈帅" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
@@ -352,6 +352,12 @@
 
 
     <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2017/06/21/NSURLSessionDownloadDemo/">
+                    iOS 使用OC语言开发之NSURLSession(二)
+                </a>
+            </div>
         
         
             <div id="article-nav-older" class="article-nav-title">
@@ -424,7 +430,9 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+            <a href="/2017/06/21/NSURLSessionDownloadDemo/" title="上一篇: iOS 使用OC语言开发之NSURLSession(二)">
+                <i class="fa fa-angle-left"></i>
+            </a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
@@ -436,7 +444,7 @@
         
     </div>
 
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/06/20/URLSession-one/">iOS 使用OC语言开发之NSURLSession(一)</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/20/3DTouch-1/">iOS 使用OC语言开发3DTouch功能</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/19/AuthenticationCode-1/">iOS使用OC语言动态生成本地图片验证码</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/19/UserDefauls/">iOS 本地数据存储OC和Swift分析</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/16/ceshi/">开通了博客</a></li></ul>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/06/22/CustomFontDemo/">iOS 开发自定义字体</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/21/NSURLSessionDownloadDemo/">iOS 使用OC语言开发之NSURLSession(二)</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/20/URLSession-one/">iOS 使用OC语言开发之NSURLSession(一)</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/20/3DTouch-1/">iOS 使用OC语言开发3DTouch功能</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/19/AuthenticationCode-1/">iOS使用OC语言动态生成本地图片验证码</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/19/UserDefauls/">iOS 本地数据存储OC和Swift分析</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/16/ceshi/">开通了博客</a></li></ul>
 
 
 
