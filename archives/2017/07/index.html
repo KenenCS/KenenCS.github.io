@@ -15,19 +15,15 @@
 
 
 
-<meta name="description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;上一遍主要讲解了NSURLSession的GET和POST请求以及文件上传,这一篇主要讲解一下下载文件的问题,因为下载牵扯到正常下载,断点下载,后台下载,内容比较多,所以放到单独的一篇,我的邮箱是KenenCS@163.com,欢迎多多交流! –此demo的地址在GitHub的 NSURLSessionDownloadDemo废话不多说,直接上代码,">
-<meta name="keywords" content="iOS">
-<meta property="og:type" content="article">
-<meta property="og:title" content="iOS 使用OC语言开发之NSURLSession(二)">
-<meta property="og:url" content="http://yoursite.com/2017/06/21/NSURLSessionDownloadDemo/index.html">
+<meta name="description" content="我们生活在一个程序的世界里,出生-说话-工作-结婚-生子-离开,每个人都是如此">
+<meta property="og:type" content="website">
+<meta property="og:title" content="陈帅的博客">
+<meta property="og:url" content="http://yoursite.com/archives/2017/07/index.html">
 <meta property="og:site_name" content="陈帅的博客">
-<meta property="og:description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;上一遍主要讲解了NSURLSession的GET和POST请求以及文件上传,这一篇主要讲解一下下载文件的问题,因为下载牵扯到正常下载,断点下载,后台下载,内容比较多,所以放到单独的一篇,我的邮箱是KenenCS@163.com,欢迎多多交流! –此demo的地址在GitHub的 NSURLSessionDownloadDemo废话不多说,直接上代码,">
-<meta property="og:image" content="http://yoursite.com/2017/06/21/NSURLSessionDownloadDemo/1.png">
-<meta property="og:updated_time" content="2017-06-21T02:57:32.000Z">
+<meta property="og:description" content="我们生活在一个程序的世界里,出生-说话-工作-结婚-生子-离开,每个人都是如此">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="iOS 使用OC语言开发之NSURLSession(二)">
-<meta name="twitter:description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;上一遍主要讲解了NSURLSession的GET和POST请求以及文件上传,这一篇主要讲解一下下载文件的问题,因为下载牵扯到正常下载,断点下载,后台下载,内容比较多,所以放到单独的一篇,我的邮箱是KenenCS@163.com,欢迎多多交流! –此demo的地址在GitHub的 NSURLSessionDownloadDemo废话不多说,直接上代码,">
-<meta name="twitter:image" content="http://yoursite.com/2017/06/21/NSURLSessionDownloadDemo/1.png">
+<meta name="twitter:title" content="陈帅的博客">
+<meta name="twitter:description" content="我们生活在一个程序的世界里,出生-说话-工作-结婚-生子-离开,每个人都是如此">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -59,7 +55,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>iOS 使用OC语言开发之NSURLSession(二) | 陈帅的博客</title>
+<title>Archives: 2017/7 | 陈帅的博客</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -69,8 +65,8 @@
         fancybox: true,
         animate: true,
         isHome: false,
-        isPost: true,
-        isArchive: false,
+        isPost: false,
+        isArchive: true,
         isTag: false,
         isCategory: false,
         fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
@@ -263,176 +259,56 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
-      <div class="body-wrap"><article id="post-NSURLSessionDownloadDemo" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap">
   
-    <div class="article-meta">
-      <a href="/2017/06/21/NSURLSessionDownloadDemo/" class="article-date">
-      <time datetime="2017-06-21T02:48:58.000Z" itemprop="datePublished">2017-06-21</time>
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2017" class="archive-year">2017</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+          <div class="article-meta">
+              <a href="/2017/07/26/KVODemo/" class="archive-article-date">
+      <time datetime="2017-07-26T05:22:46.000Z" itemprop="datePublished">07-26</time>
 </a>
 
 
-    </div>
+        </div>
+         
   
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      iOS 使用OC语言开发之NSURLSession(二)
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2017/07/26/KVODemo/">iOS开发常用设计模式之KVO模式</a>
     </h1>
   
 
-      </header>
-      
-      <div class="article-info article-info-post">
-        
+        <div class="article-info info-on-archive">
+          
 
-        
+          
     <div class="article-tag tagcloud">
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
     </div>
 
-        <div class="clearfix"></div>
-      </div>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <p>&nbsp;&nbsp;&nbsp;&nbsp;上一遍主要讲解了NSURLSession的GET和POST请求以及文件上传,这一篇主要讲解一下下载文件的问题,因为下载牵扯到正常下载,断点下载,后台下载,内容比较多,所以放到单独的一篇,我的邮箱是<a href="KenenCS@163.com">KenenCS@163.com</a>,欢迎多多交流!</p>
-<p><strong>–此demo的地址在<a href="">GitHub的 NSURLSessionDownloadDemo</a></strong><br><br><br><strong>废话不多说,直接上代码,让我们一起代码会友:</strong></p>
-<div style="border: 2px dashed #ff99cc;"><span style="font-size: 18px;color: #D2691E;">&nbsp;&nbsp;&nbsp;&nbsp;#pragma mark–.</span><img src="/2017/06/21/NSURLSessionDownloadDemo/1.png" alt="ViewController.m"><br></div>
-
-<p><br><br><strong style="font-size: 20px;">以上就是详细代码,demo的地址在<a href="">GitHub的 NSURLSessionDownloadDemo</a></strong>,欢迎下载交流!</p>
-
-      
-    </div>
-    
-  </div>
-  
-    
-    <div class="copyright">
-        <p><span>本文标题:</span><a href="/2017/06/21/NSURLSessionDownloadDemo/">iOS 使用OC语言开发之NSURLSession(二)</a></p>
-        <p><span>文章作者:</span><a href="/" title="回到主页">陈帅</a></p>
-        <p><span>发布时间:</span>2017-06-21, 10:48:58</p>
-        <p><span>最后更新:</span>2017-06-21, 10:57:32</p>
-        <p>
-            <span>原始链接:</span><a class="post-url" href="/2017/06/21/NSURLSessionDownloadDemo/" title="iOS 使用OC语言开发之NSURLSession(二)">http://yoursite.com/2017/06/21/NSURLSessionDownloadDemo/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2017/06/21/NSURLSessionDownloadDemo/　　作者: 陈帅" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
-            <script> var clipboard = new Clipboard('.copy-path'); </script>
-        </p>
-        <p>
-            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
-        </p>
-    </div>
-
-
-
-    <nav id="article-nav">
-        
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2017/06/22/CustomFontDemo/">
-                    iOS 开发使用OC语言自定义字体
-                </a>
-            </div>
-        
-        
-            <div id="article-nav-older" class="article-nav-title">
-                <a href="/2017/06/20/URLSession-one/">
-                    iOS 使用OC语言开发之NSURLSession(一)
-                </a>
-            </div>
-        
-    </nav>
-
-  
-</article>
-
-    <div id="toc" class="toc-article">
-        <strong class="toc-title">文章目录</strong>
-        
-            
-        
-    </div>
-    <style>
-        .left-col .switch-btn,
-        .left-col .switch-area {
-            display: none;
-        }
-        .toc-level-3 i,
-        .toc-level-3 ol {
-            display: none !important;
-        }
-    </style>
-
-    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
-
-    <script>
-        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
-    </script>
-
-
-
-    
-<div class="share">
-    
-        <div class="bdsharebuttonbox">
-            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
-            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
-            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
-            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
-            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
-            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
-            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
         </div>
-        <script>
-            window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"iOS 使用OC语言开发之NSURLSession(二)　| 陈帅的博客　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
-        </script>
-    
-
-    
-</div>
-
-
-
-
-
-
+        <div class="clearfix"></div>
+    </header>
+  </div>
+</article>
+  
+  
+    </div></section>
+  
 
     
 
-
-
-
-    <div class="scroll" id="post-nav-button">
-        
-            <a href="/2017/06/22/CustomFontDemo/" title="上一篇: iOS 开发使用OC语言自定义字体">
-                <i class="fa fa-angle-left"></i>
-            </a>
-        
-
-        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
-
-        
-            <a href="/2017/06/20/URLSession-one/" title="下一篇: iOS 使用OC语言开发之NSURLSession(一)">
-                <i class="fa fa-angle-right"></i>
-            </a>
-        
-    </div>
-
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/07/26/KVODemo/">iOS开发常用设计模式之KVO模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/26/ceshi/">GitPages博客开通详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/26/iOSHotissues/">针对苹果近期的热点事件分析</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/22/CustomFontDemo/">iOS 开发使用OC语言自定义字体</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/21/NSURLSessionDownloadDemo/">iOS 使用OC语言开发之NSURLSession(二)</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/20/URLSession-one/">iOS 使用OC语言开发之NSURLSession(一)</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/20/3DTouch-1/">iOS 使用OC语言开发3DTouch功能</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/19/AuthenticationCode-1/">iOS使用OC语言动态生成本地图片验证码</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/19/UserDefauls/">iOS 本地数据存储OC和Swift分析</a></li></ul>
-
-
-
-
-    <script>
-        
-    </script>
 </div>
       <footer id="footer">
     <div class="outer">
