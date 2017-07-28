@@ -15,26 +15,24 @@
 
 
 
-<meta name="description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;是不是用惯了AFNetWorking你就忘记了底层的网络请求了呢?自从iOS7的之后NSURLConnection已经被苹果踢了,用NSURLSession进行代替,来进行网络请求,本篇文章主要讲述使用NSURLSession进行GET和POST请求以及进行文件上传,下载和断点下载以及后台下载决定放到下一篇文章单独讲,我的邮箱是KenenCS@163">
-<meta name="keywords" content="iOS">
+<meta name="description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;今天上午改公司官网，因为改的代码较少，所以我直接访问我们公司的windows服务器(就是windows电脑)，直接进行线上操作，遇到了一些坑，同时也把操作步骤讲解给大家,方便大家以后使用，我的邮箱是KenenCS@163.com,欢迎多多交流!准备工作：1.你需要下载一个Remote Desktop Connection应用,简称是RDC，这个应用是">
+<meta name="keywords" content="方案">
 <meta property="og:type" content="article">
-<meta property="og:title" content="iOS 使用OC语言开发之NSURLSession(一)">
-<meta property="og:url" content="http://yoursite.com/2017/06/20/URLSession-one/index.html">
+<meta property="og:title" content="Mac电脑如何对Windows电脑进行远程桌面访问">
+<meta property="og:url" content="http://yoursite.com/2017/07/28/remoteWindows/index.html">
 <meta property="og:site_name" content="陈帅的博客">
-<meta property="og:description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;是不是用惯了AFNetWorking你就忘记了底层的网络请求了呢?自从iOS7的之后NSURLConnection已经被苹果踢了,用NSURLSession进行代替,来进行网络请求,本篇文章主要讲述使用NSURLSession进行GET和POST请求以及进行文件上传,下载和断点下载以及后台下载决定放到下一篇文章单独讲,我的邮箱是KenenCS@163">
-<meta property="og:image" content="http://yoursite.com/2017/06/20/URLSession-one/1.png">
-<meta property="og:image" content="http://yoursite.com/2017/06/20/URLSession-one/2.png">
-<meta property="og:image" content="http://yoursite.com/2017/06/20/URLSession-one/3.png">
-<meta property="og:image" content="http://yoursite.com/2017/06/20/URLSession-one/4.png">
-<meta property="og:image" content="http://yoursite.com/2017/06/20/URLSession-one/5.png">
-<meta property="og:image" content="http://yoursite.com/2017/06/20/URLSession-one/6.png">
-<meta property="og:image" content="http://yoursite.com/2017/06/20/URLSession-one/7.png">
-<meta property="og:image" content="http://yoursite.com/2017/06/20/URLSession-one/8.png">
-<meta property="og:updated_time" content="2017-06-21T02:45:45.000Z">
+<meta property="og:description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;今天上午改公司官网，因为改的代码较少，所以我直接访问我们公司的windows服务器(就是windows电脑)，直接进行线上操作，遇到了一些坑，同时也把操作步骤讲解给大家,方便大家以后使用，我的邮箱是KenenCS@163.com,欢迎多多交流!准备工作：1.你需要下载一个Remote Desktop Connection应用,简称是RDC，这个应用是">
+<meta property="og:image" content="http://yoursite.com/2017/07/28/remoteWindows/应用.png">
+<meta property="og:image" content="http://yoursite.com/2017/07/28/remoteWindows/域名.png">
+<meta property="og:image" content="http://yoursite.com/2017/07/28/remoteWindows/登陆.png">
+<meta property="og:image" content="http://yoursite.com/2017/07/28/remoteWindows/错误弹框.png">
+<meta property="og:image" content="http://yoursite.com/2017/07/28/remoteWindows/驱动器.png">
+<meta property="og:image" content="http://yoursite.com/2017/07/28/remoteWindows/共享文件夹.png">
+<meta property="og:updated_time" content="2017-07-28T07:24:55.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="iOS 使用OC语言开发之NSURLSession(一)">
-<meta name="twitter:description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;是不是用惯了AFNetWorking你就忘记了底层的网络请求了呢?自从iOS7的之后NSURLConnection已经被苹果踢了,用NSURLSession进行代替,来进行网络请求,本篇文章主要讲述使用NSURLSession进行GET和POST请求以及进行文件上传,下载和断点下载以及后台下载决定放到下一篇文章单独讲,我的邮箱是KenenCS@163">
-<meta name="twitter:image" content="http://yoursite.com/2017/06/20/URLSession-one/1.png">
+<meta name="twitter:title" content="Mac电脑如何对Windows电脑进行远程桌面访问">
+<meta name="twitter:description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;今天上午改公司官网，因为改的代码较少，所以我直接访问我们公司的windows服务器(就是windows电脑)，直接进行线上操作，遇到了一些坑，同时也把操作步骤讲解给大家,方便大家以后使用，我的邮箱是KenenCS@163.com,欢迎多多交流!准备工作：1.你需要下载一个Remote Desktop Connection应用,简称是RDC，这个应用是">
+<meta name="twitter:image" content="http://yoursite.com/2017/07/28/remoteWindows/应用.png">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -66,7 +64,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>iOS 使用OC语言开发之NSURLSession(一) | 陈帅的博客</title>
+<title>Mac电脑如何对Windows电脑进行远程桌面访问 | 陈帅的博客</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -270,11 +268,11 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
-      <div class="body-wrap"><article id="post-URLSession-one" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-remoteWindows" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2017/06/20/URLSession-one/" class="article-date">
-      <time datetime="2017-06-20T07:05:53.000Z" itemprop="datePublished">2017-06-20</time>
+      <a href="/2017/07/28/remoteWindows/" class="article-date">
+      <time datetime="2017-07-28T05:09:13.000Z" itemprop="datePublished">2017-07-28</time>
 </a>
 
 
@@ -289,7 +287,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      iOS 使用OC语言开发之NSURLSession(一)
+      Mac电脑如何对Windows电脑进行远程桌面访问
     </h1>
   
 
@@ -300,7 +298,7 @@
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/方案/">方案</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -310,23 +308,10 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>&nbsp;&nbsp;&nbsp;&nbsp;是不是用惯了AFNetWorking你就忘记了底层的网络请求了呢?自从iOS7的之后NSURLConnection已经被苹果踢了,用NSURLSession进行代替,来进行网络请求,本篇文章主要讲述使用NSURLSession进行GET和POST请求以及进行文件上传,下载和断点下载以及后台下载决定放到下一篇文章单独讲,我的邮箱是<a href="KenenCS@163.com">KenenCS@163.com</a>,欢迎多多交流!</p>
-<p><strong>–此demo的地址在<a href="https://github.com/KenenCS/NSURLSessionTestDemo" target="_blank" rel="external">GitHub的 NSURLSessionTestDemo</a></strong><br><br><br><strong>废话不多说,直接上代码,带你一起回顾网络请求:</strong></p>
-<div style="border: 2px dashed #ff99cc;"><span style="font-size: 18px;color: #D2691E;">&nbsp;&nbsp;&nbsp;&nbsp;#pragma mark–你要声明一个NSURLSessionDataDelegate这个代理,这个代理是GET和POST请求要用它的一些代理方法.</span><img src="/2017/06/20/URLSession-one/1.png" alt="ViewController.m"><br></div>
-
-<div style="border: 2px dashed #ff99cc;"><span style="font-size: 18px;color: #D2691E;">&nbsp;&nbsp;&nbsp;&nbsp;#pragma mark–请求URL的方法,因为后面是分为数据请求和文件上传的,所以写到一个大方法里面.</span><img src="/2017/06/20/URLSession-one/2.png" alt="ViewController.m"><br></div>
-
-<div style="border: 2px dashed #ff99cc;"><span style="font-size: 18px;color: #D2691E;">&nbsp;&nbsp;&nbsp;&nbsp;#pragma mark–请求URL的方法,GET请求的代码和POST请求的代码都有,注意GET请求用的是NSURLSession,POST请求用的是NSMutableURLSession.我这方法里面写了两个小方法,一个是GET和POST请求,一个是文件上传,分开写是为了便于大家后面的观看.</span><img src="/2017/06/20/URLSession-one/3.png" alt="ViewController.m"><img src="/2017/06/20/URLSession-one/4.png" alt="ViewController.m"><br></div>
-
-<div style="border: 2px dashed #ff99cc;"><span style="font-size: 18px;color: #D2691E;">&nbsp;&nbsp;&nbsp;&nbsp;#pragma mark–这个是GET和POST的数据请求,注意使用的是NSURLSessionDataTask,它就是数据请求的任务创建.另外不要忘了执行任务的代码,要不然是不会执行的哦!</span><img src="/2017/06/20/URLSession-one/5.png" alt="ViewController.m"><br></div>
-
-<div style="border: 2px dashed #ff99cc;"><span style="font-size: 18px;color: #D2691E;">&nbsp;&nbsp;&nbsp;&nbsp;#pragma mark–这是数据请求的代理方法,有接收到服务器响应数据时调用的方法,接收到服务器响应的时候你也要给它一个回应,告诉他该怎么做….有接收到服务器返回数据调用的方法,有时候数据过大的话该方法会调用多次.</span><img src="/2017/06/20/URLSession-one/6.png" alt="ViewController.m"><br></div>
-
-<div style="border: 2px dashed #ff99cc;"><span style="font-size: 18px;color: #D2691E;">&nbsp;&nbsp;&nbsp;&nbsp;#pragma mark–这是上传文件的方法,记得是使用NSURLSessionUploadTask创建任务的,这里面有两种创建方式,一种是有参数的,一种是无参数的,现在为了安全起见一般用的都是有参数的上传方法,另外不要忘记执行任务哦!.</span><img src="/2017/06/20/URLSession-one/7.png" alt="ViewController.m"><br></div>
-
-<div style="border: 2px dashed #ff99cc;"><span style="font-size: 18px;color: #D2691E;">&nbsp;&nbsp;&nbsp;&nbsp;#pragma mark–这是一个代理方法,这个代理方法只要是请求的,不管是数据请求或是文件上传还是下载,当完成任务时这个方法都会被调用.</span><img src="/2017/06/20/URLSession-one/8.png" alt="ViewController.m"><br></div>
-
-<p><br><br><strong style="font-size: 20px;">以上就是详细代码,demo的地址在<a href="https://github.com/KenenCS/NSURLSessionTestDemo" target="_blank" rel="external">GitHub的 NSURLSessionTestDemo</a></strong>,欢迎下载交流!</p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;今天上午改公司官网，因为改的代码较少，所以我直接访问我们公司的windows服务器(就是windows电脑)，直接进行线上操作，遇到了一些坑，同时也把操作步骤讲解给大家,方便大家以后使用，我的邮箱是<a href="KenenCS@163.com">KenenCS@163.com</a>,欢迎多多交流!<br><br><strong style="font-size: 20px;color: red;">准备工作：</strong><br>1.你需要下载一个<a href="http://www.pc6.com/mac/114847.html" target="_blank" rel="external">Remote Desktop Connection</a>应用,简称是RDC，这个应用是微软出品的，适用于Mac电脑连接Windows电脑，进行远程桌面操作的工具；下面是该应用的图标：<div style="margin: 0 auto;width: 100px;height: 100px;margin-top: -20px;"><img src="/2017/07/28/remoteWindows/应用.png" alt="远程桌面连接应用图标"></div><br>2.准备好你要访问的电脑的IP地址，用户名，密码；<br><br><strong style="font-size: 20px;color: red;">操作步骤：</strong><br>1.打开你下载的RDC后，会有一个跟下面一样的弹框，输入你准备好的IP地址；<div style="margin: 0 auto;margin-top: -10px;"><img src="/2017/07/28/remoteWindows/域名.png" alt="输入IP地址"></div><br>2.IP地址输入完之后点击连接按钮，会出现一个对话框，把你准备好的用户名和密码输入进去，然后一直点击连接按钮，直到出现下面如图所示就证明连接成功；<div style="margin: 0 auto;margin-top: -10px;"><img src="/2017/07/28/remoteWindows/登陆.png" alt="输入密码即可操作"></div><br>3.再次输入密码就进入到一个windows桌面，远程桌面操作连接成功！<br><br><div style="color: #DAA520;">可能出现的坑：用户名和密码输入好之后点击连接出现如下图所示：</div><div style="margin: 0 auto;margin-top: -10px;"><img src="/2017/07/28/remoteWindows/错误弹框.png" alt="错误弹框"></div><div style="color: #DAA520;">不要怕，已经有前辈解决了，看这个 <a href="http://www.cnblogs.com/taojietx/p/6733305.html" target="_blank" rel="external">解决链接 解决链接 解决链接 解决链接</a></div><br><br><strong style="font-size: 20px;color: red;">附带远程连接时Mac电脑拷贝文件给windows电脑方法：</strong><br>&nbsp;&nbsp;&nbsp;&nbsp;远程连接时肯定少不了要拷贝文件过去，因为Mac和windows本身的操作系统不一样，所以直接拖拽文件是不行的（windows和window进行远程连接时直接拖拽文件是可以的，因为两者操作系统一样）。</p>
+<p>1.打开你Mac电脑上的文件共享。（系统偏好设置-&gt;共享-&gt;文件共享 打勾）；</p>
+<p>2.点击你的RDC应用，看你Mac电脑上方有个菜单栏，点击 RDC，点击列表中的 首选项，点击 驱动器，点击第一个选项框选择 其他文件夹，选择你要拷贝的 <span style="color: red;">文件夹</span> (一定记得是文件夹，文件不支持，你可以把要拷贝的东西放到文件夹)，最后显示的是这样一个对话框；<div style="margin: 0 auto;margin-top: -10px;"><img src="/2017/07/28/remoteWindows/驱动器.png" alt="驱动器"></div></p>
+<p>3.看到上图中我用红色框圈着的一个东西没——更改将在下一次连接时应用。 这时你要断开远程连接，断开就是你直接把这个窗口关闭就好(不要问为什么断开，这是机制问题)。然后按照之前的连接步骤成功进行远程连接之后，找到你连接的windows电脑的计算机，打开之后，你会发现你硬盘下面多了一个其他，那个文件夹就是你刚刚通过你Mac电脑共享的文件夹。然后。。。就没有然后了。。。接下来你就知道怎么做了。。。<div style="margin: 0 auto;margin-top: -10px;"><img src="/2017/07/28/remoteWindows/共享文件夹.png" alt="共享文件夹"></div></p>
 
       
     </div>
@@ -335,13 +320,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2017/06/20/URLSession-one/">iOS 使用OC语言开发之NSURLSession(一)</a></p>
+        <p><span>本文标题:</span><a href="/2017/07/28/remoteWindows/">Mac电脑如何对Windows电脑进行远程桌面访问</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">陈帅</a></p>
-        <p><span>发布时间:</span>2017-06-20, 15:05:53</p>
-        <p><span>最后更新:</span>2017-06-21, 10:45:45</p>
+        <p><span>发布时间:</span>2017-07-28, 13:09:13</p>
+        <p><span>最后更新:</span>2017-07-28, 15:24:55</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2017/06/20/URLSession-one/" title="iOS 使用OC语言开发之NSURLSession(一)">http://yoursite.com/2017/06/20/URLSession-one/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2017/06/20/URLSession-one/　　作者: 陈帅" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2017/07/28/remoteWindows/" title="Mac电脑如何对Windows电脑进行远程桌面访问">http://yoursite.com/2017/07/28/remoteWindows/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2017/07/28/remoteWindows/　　作者: 陈帅" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -353,16 +338,10 @@
 
     <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2017/06/21/NSURLSessionDownloadDemo/">
-                    iOS 使用OC语言开发之NSURLSession(二)
-                </a>
-            </div>
-        
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2017/06/20/3DTouch-1/">
-                    iOS 使用OC语言开发3DTouch功能
+                <a href="/2017/07/27/SingletonDemo/">
+                    OS开发常用设计模式之单例设计模式
                 </a>
             </div>
         
@@ -410,7 +389,7 @@
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"iOS 使用OC语言开发之NSURLSession(一)　| 陈帅的博客　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"Mac电脑如何对Windows电脑进行远程桌面访问　| 陈帅的博客　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -430,15 +409,13 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2017/06/21/NSURLSessionDownloadDemo/" title="上一篇: iOS 使用OC语言开发之NSURLSession(二)">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2017/06/20/3DTouch-1/" title="下一篇: iOS 使用OC语言开发3DTouch功能">
+            <a href="/2017/07/27/SingletonDemo/" title="下一篇: OS开发常用设计模式之单例设计模式">
                 <i class="fa fa-angle-right"></i>
             </a>
         

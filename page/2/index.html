@@ -14,11 +14,14 @@
 <meta name="author" content="陈帅" />
 
 
+    
+    
+
 
 <meta name="description" content="我们生活在一个程序的世界里,出生-说话-工作-结婚-生子-离开,每个人都是如此">
 <meta property="og:type" content="website">
 <meta property="og:title" content="陈帅的博客">
-<meta property="og:url" content="http://yoursite.com/archives/index.html">
+<meta property="og:url" content="http://yoursite.com/page/2/index.html">
 <meta property="og:site_name" content="陈帅的博客">
 <meta property="og:description" content="我们生活在一个程序的世界里,出生-说话-工作-结婚-生子-离开,每个人都是如此">
 <meta name="twitter:card" content="summary">
@@ -51,11 +54,13 @@
 <link rel="stylesheet" href="/css/style.css">
 
 
+    <style> .article { opacity: 0;} </style>
+
 
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>Archives | 陈帅的博客</title>
+<title>陈帅的博客</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -64,9 +69,9 @@
     var yiliaConfig = {
         fancybox: true,
         animate: true,
-        isHome: false,
+        isHome: true,
         isPost: false,
-        isArchive: true,
+        isArchive: false,
         isTag: false,
         isCategory: false,
         fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
@@ -261,351 +266,83 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-UserDefauls" class="article article-type-post" itemscope itemprop="blogPost">
   
+    <div class="article-meta">
+      <a href="/2017/06/19/UserDefauls/" class="article-date">
+      <time datetime="2017-06-19T04:54:13.000Z" itemprop="datePublished">2017-06-19</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
     
     
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/06/19/UserDefauls/">iOS 本地数据存储OC和Swift分析</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;今天在写Swift的时候,碰到了本地存储的问题,OC的NSUserDefauls和Swift的UserDefaust还是有差别的,我的邮箱是<a href="KenenCS@163.com">KenenCS@163.com</a>,欢迎多多交流!</p>
+<h3>一.本地数据存储的用法</h3>
+
+<p><strong>首先我们先来回忆一下OC中NSUserDefauls的用法:</strong><br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//存值</span></div><div class="line">[[<span class="built_in">NSUserDefaults</span> standardUserDefaults] setObject:&lt;<span class="meta">#(nullable id)#&gt; forKey:<span class="meta-string">&lt;#(nonnull NSString *)#&gt;</span>];</span></div><div class="line">[[<span class="built_in">NSUserDefaults</span> standardUserDefaults] setValue:&lt;<span class="meta">#(nullable id)#&gt; forKey:<span class="meta-string">&lt;#(nonnull NSString *)#&gt;</span>];</span></div><div class="line">[[<span class="built_in">NSUserDefaults</span> standardUserDefaults] setBool:&lt;<span class="meta">#(BOOL)#&gt; forKey:<span class="meta-string">&lt;#(nonnull NSString *)#&gt;</span>];</span></div><div class="line">[[<span class="built_in">NSUserDefaults</span> standardUserDefaults] setInteger:&lt;<span class="meta">#(NSInteger)#&gt; forKey:<span class="meta-string">&lt;#(nonnull NSString *)#&gt;</span>];</span></div><div class="line">[[<span class="built_in">NSUserDefaults</span> standardUserDefaults] setURL:&lt;<span class="meta">#(nullable NSURL *)#&gt; forKey:<span class="meta-string">&lt;#(nonnull NSString *)#&gt;</span>];</span></div><div class="line">[[<span class="built_in">NSUserDefaults</span> standardUserDefaults] setFloat:&lt;<span class="meta">#(float)#&gt; forKey:<span class="meta-string">&lt;#(nonnull NSString *)#&gt;</span>];</span></div><div class="line">[[<span class="built_in">NSUserDefaults</span> standardUserDefaults] setDouble:&lt;<span class="meta">#(double)#&gt; forKey:<span class="meta-string">&lt;#(nonnull NSString *)#&gt;</span>];</span></div><div class="line"><span class="comment">//取值</span></div><div class="line">[[<span class="built_in">NSUserDefaults</span> standardUserDefaults] objectForKey:&lt;<span class="meta">#(nonnull NSString *)#&gt;];</span></div><div class="line">[[<span class="built_in">NSUserDefaults</span> standardUserDefaults] valueForKey:&lt;<span class="meta">#(nonnull NSString *)#&gt;];</span></div></pre></td></tr></table></figure></p>
+<p><strong>在看一下Swift中的用法:</strong><br><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//存值</span></div><div class="line"><span class="type">UserDefaults</span>.standard.<span class="keyword">set</span>(&lt;#<span class="type">T</span>##url: <span class="type">URL</span>?##<span class="type">URL</span>?#&gt;, forKey: &lt;#<span class="type">T</span>##<span class="type">String</span>#&gt;)</div><div class="line"><span class="type">UserDefaults</span>.standard.<span class="keyword">set</span>(&lt;#<span class="type">T</span>##value: <span class="type">Any</span>?##<span class="type">Any</span>?#&gt;, forKey: &lt;#<span class="type">T</span>##<span class="type">String</span>#&gt;)</div><div class="line"><span class="type">UserDefaults</span>.standard.<span class="keyword">set</span>(&lt;#<span class="type">T</span>##value: <span class="type">Bool</span>##<span class="type">Bool</span>#&gt;, forKey: &lt;#<span class="type">T</span>##<span class="type">String</span>#&gt;)</div><div class="line"><span class="type">UserDefaults</span>.standard.<span class="keyword">set</span>(&lt;#<span class="type">T</span>##value: <span class="type">Double</span>##<span class="type">Double</span>#&gt;, forKey: &lt;#<span class="type">T</span>##<span class="type">String</span>#&gt;)</div><div class="line"><span class="type">UserDefaults</span>.standard.<span class="keyword">set</span>(&lt;#<span class="type">T</span>##value: <span class="type">Float</span>##<span class="type">Float</span>#&gt;, forKey: &lt;#<span class="type">T</span>##<span class="type">String</span>#&gt;)</div><div class="line"><span class="type">UserDefaults</span>.standard.<span class="keyword">set</span>(&lt;#<span class="type">T</span>##value: <span class="type">Int</span>##<span class="type">Int</span>#&gt;, forKey: &lt;#<span class="type">T</span>##<span class="type">String</span>#&gt;)</div><div class="line"><span class="comment">//取值</span></div><div class="line"><span class="type">UserDefaults</span>.standard.object(forKey: &lt;#<span class="type">T</span>##<span class="type">String</span>#&gt;)</div><div class="line"><span class="type">UserDefaults</span>.standard.bool(forKey: &lt;#<span class="type">T</span>##<span class="type">String</span>#&gt;)</div><div class="line"><span class="type">UserDefaults</span>.standard.double(forKey: &lt;#<span class="type">T</span>##<span class="type">String</span>#&gt;)</div><div class="line"><span class="type">UserDefaults</span>.standard.float(forKey: &lt;#<span class="type">T</span>##<span class="type">String</span>#&gt;)</div><div class="line"><span class="type">UserDefaults</span>.standard.integer(forKey: &lt;#<span class="type">T</span>##<span class="type">String</span>#&gt;)</div></pre></td></tr></table></figure></p>
+<p><strong>通过两者对比,我们发现:</strong></p>
+<div style="color: red;">1.Swift存储的value值要明确数据类型了,所以使用者可千万要注意,不然会报错!<br>2.Swift最新版中没有SetObject: forKey: 的方法!<br>3.记住.object(forkey:)这个方法,使用时请确保这个值是一定不为空!</div>
+
+<p></p><h3>二.value和object的区别</h3>我们都知道 value 代表的是值, object代表的是一个对象,现在总结了一下两者的区别,如下:<p></p>
+<ol>
+<li>Object：forkey：中object值是不能够为nil的，不然会报错.</li>
+<li>Value：forKey：中value能够为nil，但是当value为nil的时候，会自动调用removeObject：forKey方法.</li>
+</ol>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2017/07/28/remoteWindows/" class="archive-article-date">
-      <time datetime="2017-07-28T05:09:13.000Z" itemprop="datePublished">07-28</time>
-</a>
 
-
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/07/28/remoteWindows/">Mac电脑如何对Windows电脑进行远程桌面访问</a>
-    </h1>
-  
-
-        <div class="article-info info-on-archive">
-          
-
-          
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/方案/">方案</a></li></ul>
-    </div>
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2017/07/27/SingletonDemo/" class="archive-article-date">
-      <time datetime="2017-07-27T08:40:30.000Z" itemprop="datePublished">07-27</time>
-</a>
-
-
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/07/27/SingletonDemo/">OS开发常用设计模式之单例设计模式</a>
-    </h1>
-  
-
-        <div class="article-info info-on-archive">
-          
-
-          
+      
     <div class="article-tag tagcloud">
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
     </div>
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2017/07/26/KVODemo/" class="archive-article-date">
-      <time datetime="2017-07-26T05:22:46.000Z" itemprop="datePublished">07-26</time>
-</a>
-
-
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/07/26/KVODemo/">iOS开发常用设计模式之KVO模式</a>
-    </h1>
-  
-
-        <div class="article-info info-on-archive">
-          
-
-          
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
+      
+      <div class="clearfix"></div>
     </div>
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
+    
   </div>
+  
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2017/06/26/ceshi/" class="archive-article-date">
-      <time datetime="2017-06-26T06:29:43.000Z" itemprop="datePublished">06-26</time>
-</a>
 
 
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/06/26/ceshi/">GitPages博客开通详解</a>
-    </h1>
-  
-
-        <div class="article-info info-on-archive">
-          
-
-          
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2017/06/26/iOSHotissues/" class="archive-article-date">
-      <time datetime="2017-06-26T02:22:38.000Z" itemprop="datePublished">06-26</time>
-</a>
 
 
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/06/26/iOSHotissues/">针对苹果近期的热点事件分析</a>
-    </h1>
-  
-
-        <div class="article-info info-on-archive">
-          
-
-          
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/热点分析/">热点分析</a></li></ul>
-    </div>
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2017/06/22/CustomFontDemo/" class="archive-article-date">
-      <time datetime="2017-06-22T02:31:38.000Z" itemprop="datePublished">06-22</time>
-</a>
 
 
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/06/22/CustomFontDemo/">iOS 开发使用OC语言自定义字体</a>
-    </h1>
-  
-
-        <div class="article-info info-on-archive">
-          
-
-          
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
-    </div>
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2017/06/21/NSURLSessionDownloadDemo/" class="archive-article-date">
-      <time datetime="2017-06-21T02:48:58.000Z" itemprop="datePublished">06-21</time>
-</a>
 
 
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/06/21/NSURLSessionDownloadDemo/">iOS 使用OC语言开发之NSURLSession(二)</a>
-    </h1>
-  
 
-        <div class="article-info info-on-archive">
-          
-
-          
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
-    </div>
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2017/06/20/URLSession-one/" class="archive-article-date">
-      <time datetime="2017-06-20T07:05:53.000Z" itemprop="datePublished">06-20</time>
-</a>
-
-
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/06/20/URLSession-one/">iOS 使用OC语言开发之NSURLSession(一)</a>
-    </h1>
-  
-
-        <div class="article-info info-on-archive">
-          
-
-          
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
-    </div>
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2017/06/20/3DTouch-1/" class="archive-article-date">
-      <time datetime="2017-06-20T00:22:39.000Z" itemprop="datePublished">06-20</time>
-</a>
-
-
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/06/20/3DTouch-1/">iOS 使用OC语言开发3DTouch功能</a>
-    </h1>
-  
-
-        <div class="article-info info-on-archive">
-          
-
-          
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
-    </div>
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2017/06/19/AuthenticationCode-1/" class="archive-article-date">
-      <time datetime="2017-06-19T07:49:50.000Z" itemprop="datePublished">06-19</time>
-</a>
-
-
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/06/19/AuthenticationCode-1/">iOS使用OC语言动态生成本地图片验证码</a>
-    </h1>
-  
-
-        <div class="article-info info-on-archive">
-          
-
-          
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
-    </div>
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
   
-    </div></section>
-  
-
-    
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="extend next" rel="next" href="/archives/page/2/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
     </nav>
   
-
 </div>
       <footer id="footer">
     <div class="outer">
@@ -659,6 +396,10 @@
         })
     </script>
 
+
+    
+
+     
 
 
 
